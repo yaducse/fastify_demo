@@ -1,6 +1,12 @@
 
 const fastify = require('fastify')({ 
-    logger: true
+    logger: true,
+    ajv:{
+        customOptions: {
+            coerceTypes: false
+        }
+    }
+    
 });
 
 // fastify.get('/', async (request, reply) => { 

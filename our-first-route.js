@@ -1,7 +1,3 @@
-const Ajv = require('ajv');
-const ajv = new Ajv({
-  coerceTypes: false
-})
 async function routes(fastify,options) {
 
     const opts1 = {
@@ -36,9 +32,6 @@ async function routes(fastify,options) {
           someKey: { type: 'number' },
           someOtherKey: { type: 'string' }
         }
-      },
-      validatorCompiler: ({ schema, method, url, httpPart }) => {
-        return data => ajv.validate(opts2)
       }
     },
     response: {
@@ -54,10 +47,8 @@ async function routes(fastify,options) {
   }
     
     fastify.post('/', opts2, async (request, reply) => {
-      
-        reply.code(201);
-        reply.send( { POST: 'works' });
-      
+      reply.code(201);
+      reply.send( { POST: 'works' });
       
     })
  
